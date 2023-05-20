@@ -40,8 +40,8 @@ export default {
     <el-menu-item index="3" >可爱学妹</el-menu-item>
 <!--    <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">成熟阿姨</a></el-menu-item>-->
     <el-menu-item index="4" >成熟阿姨</el-menu-item>
-    <el-menu-item index="5" >苏丽专场</el-menu-item>
-    <el-menu-item index="6" >曹叶雯大战董事长</el-menu-item>
+    <el-menu-item index="5" >许浩文教你添b</el-menu-item>
+    <el-menu-item index="6" >董事长大战曹xx</el-menu-item>
   </el-menu>
 </template>
 
