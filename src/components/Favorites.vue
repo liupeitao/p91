@@ -8,7 +8,7 @@ export default {
   },
   data() {
     return {
-      value: ((5 * this.propValue)/130000).toFixed(1)
+      value: ((5 * this.propValue)/(148000)).toFixed(1)
     }
   }
 }

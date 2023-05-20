@@ -8,18 +8,18 @@ export default {
     return {
       isHovered: false,
       id:this.infos[0],
-      m3u8_url: this.infos[1],
-      detail_url: this.infos[2],
-      thumbnail: this.infos[3],
-      duration: this.infos[4],
-      title: this.infos[5],
-      author: this.infos[12],
-      popularites: this.infos[6],
-      favorites: this.infos[7],
-      comments: this.infos[8],
-      likes: this.infos[9],
-      dislikes: this.infos[10],
-      add_time: this.infos[11]
+      m3u8_url: this.infos[3],
+      detail_url: this.infos[6],
+      thumbnail: this.infos[4],
+      duration: this.infos[7],
+      title: this.infos[1],
+      author: this.infos[2],
+      popularites: this.infos[5],
+      favorites: this.infos[8],
+      comments: this.infos[9],
+      likes: this.infos[10],
+      dislikes: this.infos[11],
+      add_time: this.infos[12]
     };
   },
   props: {
