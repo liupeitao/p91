@@ -2,6 +2,7 @@
   <div>
     <h1>331优秀人才探花集锦</h1>
     <nav-menu></nav-menu>
+    <search-bar></search-bar>
     <Layout></Layout>
 <!--&lt;!&ndash;    <Thumbnail/>&ndash;&gt;-->
 <!--    <h1>331 在线黄色网站</h1>-->
@@ -26,13 +27,15 @@ import VideoPlayer from './components/VideoPlayerComponents.vue'
 import NavMenu from './components/NavMenu.vue'
 import Layout from './components/Layout.vue'
 import Thumbnail from './components/Thumbnail.vue'
+import SearchBar from './components/SearchBar.vue'
 export default {
   name: 'App',
   components: {
     VideoPlayer,
     NavMenu,
     Layout,
-    Thumbnail
+    Thumbnail,
+    SearchBar,
   },
   data () {
     return {
