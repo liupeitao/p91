@@ -1,12 +1,30 @@
 <script >
 import Thumbnail from './Thumbnail.vue'
+import axios from 'axios';
+
 export default {
   name : "Layout",
   components:{
     Thumbnail
   },
   data(){
-
+    return {
+      responseData: null
+    }
+  },
+  mounted() {
+    this.fetchData();
+  },
+  methods:{
+    fetchData() {
+      axios.get('https://api.example.com/data')
+          .then(response => {
+            this.responseData = response.data;
+          })
+          .catch(error => {
+            console.error(error);
+          });
+    }
   }
 
 }
@@ -16,15 +34,14 @@ export default {
 <template>
   <el-row>
     <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>
-    <el-col :span="8"><div class="grid-content bg-purple-light"><Thumbnail></Thumbnail>  </div></el-col>
+    <el-col :span="8"><div class="grid-content bg-purple-light"><Thumbnail></Thumbnail> </div></el-col>
     <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>
-
   </el-row>
+
   <el-row>
     <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>
-    <el-col :span="8"><div class="grid-content bg-purple-light"><Thumbnail></Thumbnail>  </div></el-col>
+    <el-col :span="8"><div class="grid-content bg-purple-light"><Thumbnail></Thumbnail></div></el-col>
     <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>
-
   </el-row>
 
 </template>

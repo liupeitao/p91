@@ -1,9 +1,9 @@
 <template>
   <div>
-    <!--    <my-component></my-component>-->
+    <h1>331优秀人才猫片网站</h1>
     <nav-menu></nav-menu>
     <Layout></Layout>
-    <Thumbnail/>
+<!--    <Thumbnail/>-->
     <h1>331 在线黄色网站</h1>
     <h2>1 罕见黑奶阿姨被00后体育生后入，顶高潮【完整版65分钟已上传简 介】</h2>
     <video-player :videoSrc="videoUrl" type="application/x-mpegURL" />

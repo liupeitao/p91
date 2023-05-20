@@ -1,6 +1,6 @@
 <template>
   <div>
-    <video ref="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264">
+    <video ref="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="408" height="230">
       <source :src="videoSrc" type="application/x-mpegURL">
     </video>
   </div>
