@@ -1,6 +1,8 @@
 <script >
 import VideoPlayer from './VideoPlayerComponents.vue'
 import Favorites from './Favorites.vue'
+import moment from "moment";
+
 export default {
   data() {
     return {
@@ -31,6 +33,7 @@ export default {
     Favorites
   },
   mounted() {
+
   },
   methods: {
     highlightCard(isHovered) {
@@ -41,7 +44,30 @@ export default {
         cardElement.style.border = 'none';
       }
     }
-  }
+  },
+  computed: {
+    updateTime() {
+      const currentTime = moment();
+      const addTime = moment(this.add_time, 'ddd, DD MMM YYYY HH:mm:ss Z');
+      const diffInSeconds = currentTime.diff(addTime, 'seconds');
+      // 根据差值进行格式化
+      if (diffInSeconds < 60) {
+        return `${diffInSeconds} 秒前`;
+      } else if (diffInSeconds < 3600) {
+        const diffInMinutes = Math.floor(diffInSeconds / 60);
+        return `${diffInMinutes} 分钟前`;
+      } else if (diffInSeconds < 86400) {
+        const diffInHours = Math.floor(diffInSeconds / 3600);
+        return `${diffInHours} 小时前`;
+      } else {
+        const diffInDays = Math.floor(diffInSeconds / 86400);
+        return `${diffInDays} 天前`;
+      }
+    },
+  },
+  watch: {
+
+  },
 };
 
 
@@ -64,6 +90,7 @@ export default {
               <label>热度: {{popularites}}</label> <br>
             </div>
             <favorites :prop-value="popularites"></favorites>
+            <el-tag type="info" color="#B7E1A7">{{updateTime}}</el-tag> <br>
             <time class="time">{{add_time}}</time>
           </div>
         </div>

@@ -31,7 +31,7 @@ def get_data():
         cursor = connection.cursor()
 
         # 执行查询
-        sql = "SELECT * FROM videos"
+        sql = "SELECT * FROM p91videos order by add_time desc"
         cursor.execute(sql)
 
         # 获取查询结果
