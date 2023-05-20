@@ -2,15 +2,37 @@
 import VideoPlayer from './VideoPlayerComponents.vue'
 import Favorites from './Favorites.vue'
 export default {
-
-  data(){
-
+  data() {
+    return {
+      id:this.infos[0],
+      m3u8_url: this.infos[1],
+      detail_url: this.infos[2],
+      thumbnail: this.infos[3],
+      duration: this.infos[4],
+      title: this.infos[5],
+      author: this.infos[12],
+      popularites: this.infos[6],
+      favorites: this.infos[7],
+      comments: this.infos[8],
+      likes: this.infos[9],
+      dislikes: this.infos[10],
+      add_time: this.infos[11]
+    };
+  },
+  props: {
+    infos: {
+      type: Object,
+      required: true
+    }
   },
   components: {
     VideoPlayer,
     Favorites
   },
-}
+  mounted() {
+  }
+};
+
 
 </script>
 
@@ -18,14 +40,19 @@ export default {
   <div el-row >
       <el-card body-style="padding: 20px" shadow="hover">
 <!--        <img src="../assets/test.png" >-->
-        <video-player  video-src="https://la3.killcovid2021.com/m3u8/823536/823536.m3u8" type="application/x-mpegURL" />
+        <video-player  :video-src="m3u8_url" type="application/x-mpegURL" />
         <div style="padding: 14px;">
           <span></span>
           <div class="bottom clearfix">
-            <el-button type="text" class="button">商场试衣间口爆刚成年18岁小女友</el-button>
-            <br>
-            <favorites></favorites>
-            <time class="time">2023-05-20</time>
+<!--            <el-button type="text" class="button">{{title}}</el-button>-->
+            <label>{{title}}</label> <br>
+            <div style="text-align: center">
+              <label>作者: {{author}}</label> <br>
+              <label>时长: {{duration}}</label> <br>
+              <label>热度: {{popularites}}</label> <br>
+            </div>
+            <favorites :prop-value="popularites"></favorites>
+            <time class="time">{{add_time}}</time>
           </div>
         </div>
       </el-card>

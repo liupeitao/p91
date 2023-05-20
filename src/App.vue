@@ -36,7 +36,7 @@ export default {
   data () {
     return {
       videoUrl: 'https://cdn77.91p49.com/m3u8/815127/815127.m3u8',
-      videoUrl1: 'https://la3.killcovid2021.com/m3u8/823124/823124.m3u8',
+      videoUrl1: 'https://la3.killcovid2021.com/m3u8/823536/823536.m3u8',
       videoUrl2: 'https://la3.killcovid2021.com/m3u8/823226/823226.m3u8',
       videoUrl3: 'https://la3.killcovid2021.com/m3u8/823141/823141.m3u8'
     }

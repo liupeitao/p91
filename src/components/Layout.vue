@@ -9,7 +9,8 @@ export default {
   },
   data(){
     return {
-      responseData: null
+      thumbnailRows: [],
+      responseData: null,
     }
   },
   mounted() {
@@ -17,32 +18,54 @@ export default {
   },
   methods:{
     fetchData() {
-      axios.get('https://api.example.com/data')
+      axios.get('http://127.0.0.1:5000/api/data')
           .then(response => {
             this.responseData = response.data;
+            console.log(this.responseData)
+            const chunkSize = 3;
+            this.thumbnailRows = this.chunkArray(this.responseData, chunkSize);
           })
           .catch(error => {
             console.error(error);
           });
+
+
+    },
+    chunkArray(array, size) {
+      const result = [];
+      for (let i = 0; i < array.length; i += size) {
+        result.push(array.slice(i, i + size));
+      }
+      return result;
     }
-  }
+  },
 
 }
 
 </script>
 
 <template>
-  <el-row>
-    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>
-    <el-col :span="8"><div class="grid-content bg-purple-light"><Thumbnail></Thumbnail> </div></el-col>
-    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>
-  </el-row>
+<!--  <el-row>-->
+<!--    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>-->
+<!--    <el-col :span="8"><div class="grid-content bg-purple-light"><Thumbnail></Thumbnail> </div></el-col>-->
+<!--    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>-->
+<!--  </el-row>-->
 
-  <el-row>
-    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>
-    <el-col :span="8"><div class="grid-content bg-purple-light"><Thumbnail></Thumbnail></div></el-col>
-    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>
-  </el-row>
+<!--  <el-row>-->
+<!--    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>-->
+<!--    <el-col :span="8"><div class="grid-content bg-purple-light"><Thumbnail></Thumbnail></div></el-col>-->
+<!--    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>-->
+<!--  </el-row>-->
+
+  <div>
+    <el-row v-for="row in thumbnailRows" :key="rowIndex">
+      <el-col v-for="thumbnail in row" :key="thumbnail.id" :span="8">
+        <div class="grid-content bg-purple">
+          <Thumbnail :infos="thumbnail"></Thumbnail>
+        </div>
+      </el-col>
+    </el-row>
+  </div>
 
 </template>
 

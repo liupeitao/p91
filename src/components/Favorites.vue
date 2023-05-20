@@ -1,8 +1,14 @@
-<script >
+<script>
 export default {
+  props: {
+    propValue: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
-      value: 3.5
+      value: ((5 * this.propValue)/130000).toFixed(1)
     }
   }
 }
@@ -17,7 +23,6 @@ export default {
       score-template="{value}">
   </el-rate>
   <br>
-
 </template>
 
 <style >
