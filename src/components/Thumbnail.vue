@@ -105,7 +105,7 @@ export default {
               <label>热度: {{popularites}}</label> <br>
             </div>
             <favorites :prop-value="popularites"></favorites>
-            <el-tag type="info" color="#B7E1A7">{{updateTime}}</el-tag> <br>
+            <el-tag type="info" color="#B7E1A7">{{updateTime}}更新</el-tag> <br>
             <time class="time">{{add_time}}</time>
           </div>
         </div>
