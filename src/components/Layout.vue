@@ -2,18 +2,20 @@
 import Thumbnail from './Thumbnail.vue'
 import axios from 'axios';
 import Pagination from '../components/Pagination.vue'
+import VideoPlayerComponents from "./VideoPlayerComponents.vue";
 export default {
   name : "Layout",
   components:{
     Thumbnail,
-    Pagination
+    Pagination,
+    VideoPlayerComponents
   },
   data(){
     return {
       thumbnailRows: [],
       responseData: null,
       page_size: 24,
-      total: 106,
+      total: 450,
       currentPage : 1
     }
   },
@@ -32,7 +34,7 @@ export default {
           .then(response => {
             this.responseData = response.data['data'];
             const chunkSize = 3;
-            this.total = response.data['data']
+            this.total = response.data['total']
             this.thumbnailRows = this.chunkArray(this.responseData, chunkSize);
           })
           .catch(error => {
@@ -75,18 +77,6 @@ export default {
             console.error(error);
           });
     }
-
-    // onPageClick(page) {
-    //   axios.get(`http://127.0.0.1:5000/api/data?page=${page}&per_page=24`)
-    //       .then(response => {
-    //         this.responseData = response.data;
-    //         const chunkSize = 3;
-    //         this.thumbnailRows = this.chunkArray(this.responseData.data, chunkSize);
-    //       })
-    //       .catch(error => {
-    //         console.error(error);
-    //       });
-    // }
   },
 
 }
@@ -94,14 +84,9 @@ export default {
 </script>
 
 <template>
-<!--  <el-row>-->
-<!--    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>-->
-<!--    <el-col :span="8"><div class="grid-content bg-purple-light"><Thumbnail></Thumbnail> </div></el-col>-->
-<!--  </el-row>-->
-
   <div>
     <el-row v-for="row in thumbnailRows" :key="rowIndex">
-      <el-col v-for="thumbnail in row" :key="thumbnail.id" :span="8">
+      <el-col v-for="thumbnail in row" :key="thumbnail.id"  :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
         <div class="grid-content bg-purple">
           <Thumbnail :infos="thumbnail"></Thumbnail>
         </div>
@@ -116,7 +101,7 @@ export default {
 
 <style >
 .el-row {
-  margin-bottom: 20px;
+  margin-bottom: 4vh;
   &:last-child {
     margin-bottom: 0;
   }

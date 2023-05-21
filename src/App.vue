@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>331优秀人才探花集锦</h1>
+    <h1>331Hub--Plus</h1>
     <nav-menu></nav-menu>
     <search-bar></search-bar>
     <Layout></Layout>

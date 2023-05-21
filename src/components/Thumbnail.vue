@@ -6,21 +6,6 @@ import moment from "moment";
 export default {
   data() {
     return {
-      // isHovered: false,
-      // id:this.infos[0],
-      // m3u8_url: this.infos[3],
-      // detail_url: this.infos[6],
-      // thumbnail: this.infos[4],
-      // duration: this.infos[7],
-      // title: this.infos[1],
-      // author: this.infos[2],
-      // popularites: this.infos[5],
-      // favorites: this.infos[8],
-      // comments: this.infos[9],
-      // likes: this.infos[10],
-      // dislikes: this.infos[11],
-      // add_time: this.infos[12]
-
       isHovered: false,
       id:this.infos['id'],
       m3u8_url: this.infos['m3u8_url'],
@@ -93,20 +78,19 @@ export default {
       <el-card id="card" body-style="padding: 20px" shadow="hover" :class="{ 'highlighted': isHovered }" @mouseover="isHovered = true" @mouseout="isHovered = false" >
 <!--        <img src="../assets/test.png" >-->
         <video-player  :video-src="m3u8_url" type="application/x-mpegURL" />
-        <div style="padding: 20px;">
-          <span></span>
+
+        <div style="padding: 15px;">
           <div class="bottom clearfix">
-<!--            <el-button type="text" class="button">{{title}}</el-button>-->
             <label>{{title}}</label> <br>
+            <el-tag type="info" color="#B7E1A7">{{updateTime}}更新</el-tag> <br>
             <div  style="text-align: center">
               <el-tag type="success">作者:{{author}}</el-tag> <br>
-<!--              <label>作者: {{author}}</label> <br>-->
+              <el-tag type="info" >热度: {{popularites}}</el-tag> <br>
+<!--              <label>热度: {{popularites}}</label> <br>-->
+              <favorites :prop-value="popularites"></favorites>
               <label>时长: {{duration}}</label> <br>
-              <label>热度: {{popularites}}</label> <br>
+              <time class="time">{{add_time}}</time>
             </div>
-            <favorites :prop-value="popularites"></favorites>
-            <el-tag type="info" color="#B7E1A7">{{updateTime}}更新</el-tag> <br>
-            <time class="time">{{add_time}}</time>
           </div>
         </div>
       </el-card>

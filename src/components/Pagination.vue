@@ -3,8 +3,8 @@ import axios from 'axios';
 export default {
   data(){
       return {
-        page_size: this.per_page,
-        total: this.count,
+        // page_size: this.per_page,
+        // total: this.count,
         currentPage: 1,
     }
   },
@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     handleSizeChange(val) {
-      this.page_size = val;
+      this.per_page = val;
       this.$emit('size-change', val); // 触发自定义的size-change事件，将新的页面大小传递给父组件
 
       // 发送请求
@@ -58,9 +58,9 @@ export default {
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page.sync="currentPage"
-        :page-size="this.page_size"
+        :page-size="this.per_page"
         layout="prev, pager, next, jumper"
-        :total="this.total">
+        :total="this.count">
     </el-pagination>
   </div>
 </template>
