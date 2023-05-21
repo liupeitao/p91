@@ -6,20 +6,35 @@ import moment from "moment";
 export default {
   data() {
     return {
+      // isHovered: false,
+      // id:this.infos[0],
+      // m3u8_url: this.infos[3],
+      // detail_url: this.infos[6],
+      // thumbnail: this.infos[4],
+      // duration: this.infos[7],
+      // title: this.infos[1],
+      // author: this.infos[2],
+      // popularites: this.infos[5],
+      // favorites: this.infos[8],
+      // comments: this.infos[9],
+      // likes: this.infos[10],
+      // dislikes: this.infos[11],
+      // add_time: this.infos[12]
+
       isHovered: false,
-      id:this.infos[0],
-      m3u8_url: this.infos[3],
-      detail_url: this.infos[6],
-      thumbnail: this.infos[4],
-      duration: this.infos[7],
-      title: this.infos[1],
-      author: this.infos[2],
-      popularites: this.infos[5],
-      favorites: this.infos[8],
-      comments: this.infos[9],
-      likes: this.infos[10],
-      dislikes: this.infos[11],
-      add_time: this.infos[12]
+      id:this.infos['id'],
+      m3u8_url: this.infos['m3u8_url'],
+      detail_url: this.infos['detail_url'],
+      thumbnail: this.infos['thumbnail'],
+      duration: this.infos['duration'],
+      title: this.infos['title'],
+      author: this.infos['author'],
+      popularites: this.infos['popularites'],
+      favorites: this.infos['favorites'],
+      comments: this.infos['comments'],
+      likes: this.infos['likes'],
+      dislikes: this.infos['dislikes'],
+      add_time: this.infos['add_time']
     };
   },
   props: {

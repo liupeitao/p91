@@ -4,6 +4,9 @@
     <nav-menu></nav-menu>
     <search-bar></search-bar>
     <Layout></Layout>
+    <hr>
+    <br>
+<!--    <pagination :total=200 :page_size=24></pagination>-->
 <!--&lt;!&ndash;    <Thumbnail/>&ndash;&gt;-->
 <!--    <h1>331 在线黄色网站</h1>-->
 <!--    <h2>1 罕见黑奶阿姨被00后体育生后入，顶高潮【完整版65分钟已上传简 介】</h2>-->
@@ -28,6 +31,7 @@ import NavMenu from './components/NavMenu.vue'
 import Layout from './components/Layout.vue'
 import Thumbnail from './components/Thumbnail.vue'
 import SearchBar from './components/SearchBar.vue'
+// import Pagination from './components/Pagination.vue'
 export default {
   name: 'App',
   components: {
@@ -36,6 +40,7 @@ export default {
     Layout,
     Thumbnail,
     SearchBar,
+    // Pagination
   },
   data () {
     return {

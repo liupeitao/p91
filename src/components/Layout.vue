@@ -1,26 +1,37 @@
 <script >
 import Thumbnail from './Thumbnail.vue'
 import axios from 'axios';
-
+import Pagination from '../components/Pagination.vue'
 export default {
   name : "Layout",
   components:{
-    Thumbnail
+    Thumbnail,
+    Pagination
   },
   data(){
     return {
       thumbnailRows: [],
       responseData: null,
+      page_size: 24,
+      total: 200,
+      currentPage : 1
     }
   },
   mounted() {
     this.fetchData();
   },
+  watch: {
+    responseData(newData) {
+      // 当responseData发生变化时，重新调用fetchData()
+      this.fetchData();
+    }
+  },
   methods:{
     fetchData() {
-      axios.get('http://127.0.0.1:5000/api/data')
+      axios.get(`http://127.0.0.1:5000/api/data?page=${this.currentPage}&per_page=${this.page_size}`)
           .then(response => {
-            this.responseData = response.data;
+            this.responseData = response.data['data'];
+            this.total = response.data['total']
             console.log(this.responseData)
             const chunkSize = 3;
             this.thumbnailRows = this.chunkArray(this.responseData, chunkSize);
@@ -28,8 +39,6 @@ export default {
           .catch(error => {
             console.error(error);
           });
-
-
     },
     chunkArray(array, size) {
       const result = [];
@@ -37,7 +46,48 @@ export default {
         result.push(array.slice(i, i + size));
       }
       return result;
+    },
+    onPageSizeChange(size) {
+      // 在这里根据新的页面大小发送请求，更新数据
+      axios.get(`http://127.0.0.1:5000/api/pages?page=${this.currentPage}&per_page=${this.page_size}`)
+          .then(response => {
+            // 处理返回的数据
+            // 更新Layout组件的数据或传递给其他组件
+            // console.log(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+    },
+    onPageChange(page) {
+      // 在这里根据新的当前页码发送请求，更新数据
+      axios.get(`http://127.0.0.1:5000/api/data?page=${page}&per_page=${this.page_size}`)
+          .then(response => {
+            // 处理返回的数据
+            // 更新Layout组件的数据或传递给其他组件
+            this.currentPage = page
+            console.log("这里是layout")
+            console.log("第" + page + "也")
+            console.log("请求的网址" + "http://127.0.0.1:5000/api/pages?page=${page}&per_page=${this.pageSize}")
+            console.log(response.data['data']);
+            this.responseData = response.data['data']
+          })
+          .catch(error => {
+            console.error(error);
+          });
     }
+
+    // onPageClick(page) {
+    //   axios.get(`http://127.0.0.1:5000/api/data?page=${page}&per_page=24`)
+    //       .then(response => {
+    //         this.responseData = response.data;
+    //         const chunkSize = 3;
+    //         this.thumbnailRows = this.chunkArray(this.responseData.data, chunkSize);
+    //       })
+    //       .catch(error => {
+    //         console.error(error);
+    //       });
+    // }
   },
 
 }
@@ -48,13 +98,6 @@ export default {
 <!--  <el-row>-->
 <!--    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>-->
 <!--    <el-col :span="8"><div class="grid-content bg-purple-light"><Thumbnail></Thumbnail> </div></el-col>-->
-<!--    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>-->
-<!--  </el-row>-->
-
-<!--  <el-row>-->
-<!--    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>-->
-<!--    <el-col :span="8"><div class="grid-content bg-purple-light"><Thumbnail></Thumbnail></div></el-col>-->
-<!--    <el-col :span="8"><div class="grid-content bg-purple"><Thumbnail></Thumbnail></div></el-col>-->
 <!--  </el-row>-->
 
   <div>
@@ -66,6 +109,9 @@ export default {
       </el-col>
     </el-row>
   </div>
+
+<!--  <pagination :total=200 :page_size=24 @page-click="onPageClick"></pagination>-->
+  <pagination :total="total" :page-size="24" :current-page.sync="currentPage" @size-change="onPageSizeChange" @current-change="onPageChange"></pagination>
 
 </template>
 

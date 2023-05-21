@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 .search-container {
   display: flex;
   align-items: center;
