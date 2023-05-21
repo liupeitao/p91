@@ -3,17 +3,17 @@ import axios from 'axios';
 export default {
   data(){
       return {
-        page_size: this.page_size,
-        total: this.total,
+        page_size: this.per_page,
+        total: this.count,
         currentPage: 1,
     }
   },
   props: {
-    page_size: {
+    per_page: {
       type: Number,
       required: true
     },
-    total: {
+    count: {
       type: Number,
       required: true
     }

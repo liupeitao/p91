@@ -13,7 +13,7 @@ export default {
       thumbnailRows: [],
       responseData: null,
       page_size: 24,
-      total: 200,
+      total: 106,
       currentPage : 1
     }
   },
@@ -21,7 +21,7 @@ export default {
     this.fetchData();
   },
   watch: {
-    responseData(newData) {
+    currentPage(newData) {
       // 当responseData发生变化时，重新调用fetchData()
       this.fetchData();
     }
@@ -31,9 +31,10 @@ export default {
       axios.get(`http://127.0.0.1:5000/api/data?page=${this.currentPage}&per_page=${this.page_size}`)
           .then(response => {
             this.responseData = response.data['data'];
-            this.total = response.data['total']
             console.log(this.responseData)
             const chunkSize = 3;
+            this.total = response.data['data']
+            console.log("总书" + this.total)
             this.thumbnailRows = this.chunkArray(this.responseData, chunkSize);
           })
           .catch(error => {
@@ -69,8 +70,8 @@ export default {
             console.log("这里是layout")
             console.log("第" + page + "也")
             console.log("请求的网址" + "http://127.0.0.1:5000/api/pages?page=${page}&per_page=${this.pageSize}")
-            console.log(response.data['data']);
             this.responseData = response.data['data']
+            this.total = response.data['total']
           })
           .catch(error => {
             console.error(error);
@@ -111,7 +112,7 @@ export default {
   </div>
 
 <!--  <pagination :total=200 :page_size=24 @page-click="onPageClick"></pagination>-->
-  <pagination :total="total" :page-size="24" :current-page.sync="currentPage" @size-change="onPageSizeChange" @current-change="onPageChange"></pagination>
+  <pagination :count="this.total" :per_page="this.page_size" :current-page.sync="currentPage" @size-change="onPageSizeChange" @current-change="onPageChange"></pagination>
 
 </template>
 
