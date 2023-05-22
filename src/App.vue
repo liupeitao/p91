@@ -1,25 +1,13 @@
 <template>
   <div>
-    <h1>331Hub--Plus</h1>
+    <h1>331探花之路 - Road to Glory - 栄光への道</h1>
+    <h3> 在云端阁楼，与优秀人才相遇。<br> 梦想从这里开始，才华从这里绽放。<br> 释放你的潜力，成就你的梦想。<br>
+      探花之路，让你的才华绽放。 <br> <span style="font-size: 24px; font-weight: bold; color: red;">331Hub让优秀人才更加出色</span>。</h3>
+    <br>
+    <hr>
     <nav-menu></nav-menu>
     <search-bar></search-bar>
     <Layout></Layout>
-    <hr>
-    <br>
-<!--    <pagination :total=200 :page_size=24></pagination>-->
-<!--&lt;!&ndash;    <Thumbnail/>&ndash;&gt;-->
-<!--    <h1>331 在线黄色网站</h1>-->
-<!--    <h2>1 罕见黑奶阿姨被00后体育生后入，顶高潮【完整版65分钟已上传简 介】</h2>-->
-<!--    <video-player :videoSrc="videoUrl" type="application/x-mpegURL" />-->
-<!--    <hr>-->
-<!--    <h2>2 又纯又欲，高潮过后饥渴吞精</h2>-->
-<!--    <video-player :videoSrc="videoUrl1" type="application/x-mpegURL" />-->
-<!--    <hr>-->
-<!--    <h2>3 商场试衣间口爆刚成年18岁小女友</h2>-->
-<!--    <video-player :videoSrc="videoUrl2" type="application/x-mpegURL" />-->
-<!--    <hr>-->
-<!--    <h2>4 超高颜值置业顾问 为了卖一套房真是拼了。（完整版看间介）</h2>-->
-<!--    <video-player :videoSrc="videoUrl3" type="application/x-mpegURL" />-->
   </div>
 
 </template>
@@ -41,14 +29,6 @@ export default {
     Thumbnail,
     SearchBar,
     // Pagination
-  },
-  data () {
-    return {
-      videoUrl: 'https://cdn77.91p49.com/m3u8/815127/815127.m3u8',
-      videoUrl1: 'https://la3.killcovid2021.com/m3u8/823536/823536.m3u8',
-      videoUrl2: 'https://la3.killcovid2021.com/m3u8/823226/823226.m3u8',
-      videoUrl3: 'https://la3.killcovid2021.com/m3u8/823141/823141.m3u8'
-    }
   }
 }
 </script>
