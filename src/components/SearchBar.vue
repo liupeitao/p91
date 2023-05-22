@@ -2,7 +2,7 @@
   <div class="search-container">
     <el-input
         v-model="searchText"
-        placeholder="请输入搜索内容"
+        placeholder="搜索全站资源"
         suffix-icon="el-icon-search"
         @keydown.enter="handleSearch"
     ></el-input>

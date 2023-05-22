@@ -74,11 +74,9 @@ export default {
 </script>
 
 <template>
-  <div el-row  >
       <el-card id="card" body-style="padding: 20px" shadow="hover" :class="{ 'highlighted': isHovered }" @mouseover="isHovered = true" @mouseout="isHovered = false" >
 <!--        <img src="../assets/test.png" >-->
         <video-player  :video-src="m3u8_url" type="application/x-mpegURL" />
-
         <div style="padding: 15px;">
           <div class="bottom clearfix">
             <label>{{title}}</label> <br>
@@ -94,7 +92,6 @@ export default {
           </div>
         </div>
       </el-card>
-    </div>
 </template>
 
 <style >
@@ -102,7 +99,6 @@ export default {
   border: 4px solid;
   border-image:linear-gradient(to right, rgb(67, 198, 172), rgb(248, 255, 174));
   //border-image: linear-gradient(to right, rgb(103, 178, 111), rgb(76, 162, 205));
-  border-image-slice: 1;
   transform: scale(1.1);
   background: linear-gradient(to right, rgb(190, 147, 197), rgb(123, 198, 204));
   //background: linear-gradient(to right, rgb(31, 64, 55), rgb(153, 242, 200));

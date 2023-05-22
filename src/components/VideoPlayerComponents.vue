@@ -1,7 +1,8 @@
 <template>
   <div>
-    <video ref="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="408" height="230">
-      <source :src="videoSrc" type="application/x-mpegURL">
+    <video ref="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="408" height="230" >
+      <source :src="videoSrc" >
+<!--      type="application/x-mpegURL"-->
     </video>
   </div>
 </template>
@@ -14,7 +15,6 @@ export default {
   props: {
     videoSrc: {
       type: String,
-
       required: true
     }
   },
@@ -25,8 +25,10 @@ export default {
   },
   beforeDestroy () {
     if (this.player) {
+      console.log("player 死亡了")
       this.player.dispose()
     }
+    console.log("player 死亡了")
   }
 }
 </script>

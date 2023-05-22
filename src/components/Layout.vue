@@ -16,17 +16,26 @@ export default {
       responseData: null,
       page_size: 24,
       total: 450,
-      currentPage : 1
+      currentPage : 1,
+      keyword: ''
+    }
+  },
+  computed: {
+    filteredList() {
+      if (this.responseData) {
+        return this.chunkArray(this.responseData.filter(item => item['author'].includes(this.keyword) || item['title'].includes(this.keyword)), 3)
+      }
+      return this.thumbnailRows
     }
   },
   mounted() {
     this.fetchData();
   },
   watch: {
-    currentPage(newData) {
-      // 当responseData发生变化时，重新调用fetchData()
-      this.fetchData();
-    }
+    // currentPage(newData) {
+    //   // 当responseData发生变化时，重新调用fetchData()
+    //   this.fetchData();
+    // }
   },
   methods:{
     fetchData() {
@@ -48,28 +57,23 @@ export default {
       }
       return result;
     },
-    onPageSizeChange(size) {
-      // 在这里根据新的页面大小发送请求，更新数据
-      axios.get(`http://10.16.23.72:5000/api/pages?page=${this.currentPage}&per_page=${this.page_size}`)
-          .then(response => {
-            // 处理返回的数据
-            // 更新Layout组件的数据或传递给其他组件
-            // console.log(response.data);
-          })
-          .catch(error => {
-            console.error(error);
-          });
-    },
+    // onPageSizeChange(size) {
+    //   // 在这里根据新的页面大小发送请求，更新数据
+    //   axios.get(`http://10.16.23.72:5000/api/pages?page=${this.currentPage}&per_page=${this.page_size}`)
+    //       .then(response => {
+    //         // 处理返回的数据
+    //         // 更新Layout组件的数据或传递给其他组件
+    //         // console.log(response.data);
+    //       })
+    //       .catch(error => {
+    //         console.error(error);
+    //       });
+    // },
     onPageChange(page) {
       // 在这里根据新的当前页码发送请求，更新数据
       axios.get(`http://10.16.23.72:5000/api/data?page=${page}&per_page=${this.page_size}`)
           .then(response => {
-            // 处理返回的数据
-            // 更新Layout组件的数据或传递给其他组件
             this.currentPage = page
-            // console.log("这里是layout")
-            // console.log("第" + page + "也")
-            // console.log("请求的网址" + "http://127.0.0.1:5000/api/pages?page=${page}&per_page=${this.pageSize}")
             this.responseData = response.data['data']
             this.total = response.data['total']
           })
@@ -78,14 +82,13 @@ export default {
           });
     }
   },
-
 }
-
 </script>
 
 <template>
   <div>
-    <el-row v-for="row in thumbnailRows" :key="rowIndex">
+    <el-input v-model="keyword" placeholder="输入关键字对本页面进行过滤"></el-input>
+    <el-row v-for="row in this.filteredList" :key="rowIndex" >
       <el-col v-for="thumbnail in row" :key="thumbnail.id"  :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
         <div class="grid-content bg-purple">
           <Thumbnail :infos="thumbnail"></Thumbnail>
@@ -106,7 +109,7 @@ export default {
     margin-bottom: 0;
   }
 }
-.el-col {
+el-col {
   border-radius: 4px;
 }
 .bg-purple-dark {
