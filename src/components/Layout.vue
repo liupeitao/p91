@@ -18,7 +18,7 @@ export default {
       total: 450,
       currentPage : this.$props.page,
       keyword: '',
-
+      chunkSize: 3
     }
   },
   props :{
@@ -30,7 +30,7 @@ export default {
   computed: {
     filteredList() {
       if (this.responseData) {
-        return this.chunkArray(this.responseData.filter(item => (item['author'] + item['title']).includes(this.keyword)), 3)
+        return this.chunkArray(this.responseData.filter(item => (item['author'] + item['title']).includes(this.keyword)), this.chunkSize)
       }
       return this.thumbnailRows
     },
@@ -47,10 +47,9 @@ export default {
       axios.get(`http://10.16.23.72:5000/api/data?page=${page.toString()}&per_page=${this.page_size.toString()}`)
           .then(response => {
             this.responseData = response.data['data'];
-            const chunkSize = 3;
             this.total = response.data['total']
-            if (! this.thumbnailRows) {
-              this.thumbnailRows = this.chunkArray(this.responseData, chunkSize);
+            if (!this.thumbnailRows) {
+              this.thumbnailRows = this.chunkArray(this.responseData, this.chunkSize);
             }
           })
           .catch(error => {
