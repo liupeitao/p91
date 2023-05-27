@@ -43,7 +43,7 @@ export default {
       } else {
         cardElement.style.border = 'none';
       }
-    }
+    },
   },
   computed: {
     updateTime() {
@@ -75,7 +75,7 @@ export default {
 
 <template>
       <el-card id="card" body-style="padding: 20px" shadow="hover" :class="{ 'highlighted': isHovered }" @mouseover="isHovered = true" @mouseout="isHovered = false" >
-<!--        <img src="../assets/test.png" >-->
+<!--        <img :src="thumbnail"  alt="x">-->
         <video-player  :video-src="m3u8_url" type="application/x-mpegURL" />
         <div style="padding: 15px;">
           <div class="bottom clearfix">

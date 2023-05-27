@@ -16,8 +16,15 @@ export default {
       responseData: null,
       page_size: 24,
       total: 450,
-      currentPage : 1,
-      keyword: ''
+      currentPage : this.$props.page,
+      keyword: '',
+
+    }
+  },
+  props :{
+    page: {
+      type: Number,
+      required: false
     }
   },
   computed: {
@@ -26,25 +33,25 @@ export default {
         return this.chunkArray(this.responseData.filter(item => (item['author'] + item['title']).includes(this.keyword)), 3)
       }
       return this.thumbnailRows
-    }
+    },
   },
+
   mounted() {
-    this.fetchData();
+   this.fetchData(this.page);
   },
-  watch: {
-    // currentPage(newData) {
-    //   // 当responseData发生变化时，重新调用fetchData()
-    //   this.fetchData();
-    // }
-  },
+
+  //
+  // },
   methods:{
-    fetchData() {
-      axios.get(`http://10.16.23.72:5000/api/data?page=${this.currentPage.toString()}&per_page=${this.page_size.toString()}`)
+    fetchData(page) {
+      axios.get(`http://10.16.23.72:5000/api/data?page=${page.toString()}&per_page=${this.page_size.toString()}`)
           .then(response => {
             this.responseData = response.data['data'];
             const chunkSize = 3;
             this.total = response.data['total']
-            this.thumbnailRows = this.chunkArray(this.responseData, chunkSize);
+            if (! this.thumbnailRows) {
+              this.thumbnailRows = this.chunkArray(this.responseData, chunkSize);
+            }
           })
           .catch(error => {
             console.error(error);
@@ -71,17 +78,14 @@ export default {
     // },
     onPageChange(page) {
       // 在这里根据新的当前页码发送请求，更新数据
-      axios.get(`http://10.16.23.72:5000/api/data?page=${page}&per_page=${this.page_size}`)
-          .then(response => {
-            this.currentPage = page
-            this.responseData = response.data['data']
-            this.total = response.data['total']
-          })
-          .catch(error => {
-            console.error(error);
-          });
+      this.currentPage = page
+      this.$props.page = page
+      this.fetchData(page)
+      this.$router.replace({ query: { page: page} });
+      this.$emit('update:page', page);
+
     }
-  },
+  }
 }
 </script>
 
@@ -98,8 +102,8 @@ export default {
   </div>
 
 <!--  <pagination :total=200 :page_size=24 @page-click="onPageClick"></pagination>-->
-  <pagination :count="this.total" :per_page="this.page_size" :current-page.sync="currentPage" @size-change="onPageSizeChange" @current-change="onPageChange"></pagination>
 
+  <pagination :count="this.total" :per_page="this.page_size" :current-page.sync="this.currentPage" @size-change="onPageSizeChange" @current-change="onPageChange"></pagination>
 </template>
 
 <style >
