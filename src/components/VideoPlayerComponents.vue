@@ -1,6 +1,6 @@
 <template>
   <div>
-    <video ref="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="408" height="230" >
+    <video ref="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="1080" height="620" >
       <source :src="videoSrc" >
 <!--      type="application/x-mpegURL"-->
     </video>
@@ -12,16 +12,18 @@ import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
 export default {
   name: 'VideoPlayer',
-  props: {
-    videoSrc: {
-      type: String,
-      required: true
-    }
-  },
+  // props: {
+  //   videoSrc: this.$route.query.url
+  // },
   mounted () {
     this.player = videojs(this.$refs.videoPlayer, {}, function onPlayerReady () {
       console.log('Video.js player is ready!')
     })
+  },
+  data(){
+    return {
+      videoSrc: this.$route.query.url
+    }
   },
   beforeDestroy () {
     if (this.player) {

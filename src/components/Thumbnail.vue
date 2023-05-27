@@ -44,6 +44,9 @@ export default {
         cardElement.style.border = 'none';
       }
     },
+    play( url ){
+        this.$router.push(`/play?url=${url}`)
+    }
   },
   computed: {
     updateTime() {
@@ -74,9 +77,8 @@ export default {
 </script>
 
 <template>
-      <el-card id="card" body-style="padding: 20px" shadow="hover" :class="{ 'highlighted': isHovered }" @mouseover="isHovered = true" @mouseout="isHovered = false" >
-<!--        <img :src="thumbnail"  alt="x">-->
-        <video-player  :video-src="m3u8_url" type="application/x-mpegURL" />
+      <el-card id="card" body-style="padding: 20px" shadow="hover" :class="{ 'highlighted': isHovered }" @mouseover="isHovered = true" @mouseout="isHovered = false" @click="play(m3u8_url)">
+        <img :src="thumbnail"  alt="x">
         <div style="padding: 15px;">
           <div class="bottom clearfix">
             <label>{{title}}</label> <br>
