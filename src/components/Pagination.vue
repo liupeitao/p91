@@ -5,7 +5,7 @@ export default {
       return {
         // page_size: this.per_page,
         // total: this.count,
-        currentPage: 1,
+        currentPage: this.$props.currentPage,
     }
   },
   props: {
@@ -15,6 +15,10 @@ export default {
     },
     count: {
       type: Number,
+      required: true
+    },
+    currentPage:{
+      type:Number,
       required: true
     }
   },

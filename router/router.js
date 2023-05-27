@@ -3,14 +3,14 @@
 // import VueRouter from 'vue-router';
 import { createRouter, createWebHistory } from 'vue-router'
 import MainFrame from "../src/components/MainFrame.vue";
-import mainFrame from "../src/components/MainFrame.vue";
+
 
 const routes = [
     {
         path: '/index',
-        name: 'Ma',
-        component: mainFrame
-    }
+        name: 'mainFrame',
+        component: MainFrame
+    },
 ];
 
 const router = createRouter({
