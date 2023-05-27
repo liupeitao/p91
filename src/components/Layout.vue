@@ -23,7 +23,7 @@ export default {
   computed: {
     filteredList() {
       if (this.responseData) {
-        return this.chunkArray(this.responseData.filter(item => item['author'].includes(this.keyword) || item['title'].includes(this.keyword)), 3)
+        return this.chunkArray(this.responseData.filter(item => (item['author'] + item['title']).includes(this.keyword)), 3)
       }
       return this.thumbnailRows
     }

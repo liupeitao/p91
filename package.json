@@ -12,9 +12,11 @@
     "@videojs/http-streaming": "^3.0.2",
     "axios": "^1.4.0",
     "element-plus": "^2.3.5",
+    "moment": "^2.29.4",
     "video.js": "^8.3.0",
     "videojs-contrib-hls": "^5.15.0",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-router": "^4.2.1"
   },
   "devDependencies": {
     "@videojs/http-streaming": "^3.0.2",
