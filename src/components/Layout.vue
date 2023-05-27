@@ -3,12 +3,15 @@ import Thumbnail from './Thumbnail.vue'
 import axios from 'axios';
 import Pagination from '../components/Pagination.vue'
 import VideoPlayerComponents from "./VideoPlayerComponents.vue";
+import SearchFilter from "./SearchFilter.vue";
+
 export default {
   name : "Layout",
   components:{
     Thumbnail,
     Pagination,
-    VideoPlayerComponents
+    VideoPlayerComponents,
+    SearchFilter
   },
   data(){
     return {
@@ -51,6 +54,7 @@ export default {
             if (!this.thumbnailRows) {
               this.thumbnailRows = this.chunkArray(this.responseData, this.chunkSize);
             }
+
           })
           .catch(error => {
             console.error(error);
@@ -62,6 +66,9 @@ export default {
         result.push(array.slice(i, i + size));
       }
       return result;
+    },
+    up(value){
+      this.keyword = value
     },
     // onPageSizeChange(size) {
     //   // 在这里根据新的页面大小发送请求，更新数据
@@ -90,7 +97,10 @@ export default {
 
 <template>
   <div>
-    <el-input v-model="keyword" placeholder="输入关键字对本页面进行过滤"></el-input>
+    <!--    <SearchFilter :infos="this.responseData" @input="up"></SearchFilter>-->
+    <el-input v-model="keyword" placeholder="输入标题或者作者进行过滤" style="width: 20em; margin-bottom: 60px; border-color: #1f4029"></el-input>
+  </div>
+  <div>
     <el-row v-for="row in this.filteredList" :key="rowIndex" >
       <el-col v-for="thumbnail in row" :key="thumbnail.id"  :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
         <div class="grid-content bg-purple">
@@ -131,5 +141,8 @@ el-col {
 .row-bg {
   padding: 10px 0;
   background-color: #f9fafc;
+}
+el-input{
+
 }
 </style>

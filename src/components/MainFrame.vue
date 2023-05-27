@@ -25,7 +25,7 @@ export default{
 <template>
   <div>
     <Header></Header>
-    <SearchBar></SearchBar>
+<!--    <SearchBar></SearchBar>-->
     <Layout :page="page" ></Layout>
   </div>
 

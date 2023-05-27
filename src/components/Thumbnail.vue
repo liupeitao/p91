@@ -108,7 +108,7 @@ export default {
   //background: linear-gradient(to right, rgb(103, 178, 111), rgb(76, 205, 171));
 }
 img{
-  width: 500px;
-  height: 281px;
+  width: 408px;
+  height: 230px;
 }
 </style>

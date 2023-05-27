@@ -13,5 +13,10 @@
 </template>
 
 <style >
-
+  hr{
+    border-color: yellowgreen;
+  }
+  h1{
+    margin-top: 0;
+  }
 </style>
