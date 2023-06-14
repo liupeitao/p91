@@ -74,10 +74,10 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1920px;
+  max-width:100%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-
+/* 在手机上，将视频宽度设置为100% */

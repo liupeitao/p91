@@ -2,11 +2,13 @@
 import Layout from "./Layout.vue";
 import Header from "./Header.vue";
 import SearchBar from "./SearchBar.vue";
+import NavMenu from "./NavMenu.vue";
 export default{
   components: {
     Layout,
     SearchBar,
-    Header
+    Header,
+    NavMenu
   },
   // watch: {
   //   page(newValue) {
@@ -26,6 +28,7 @@ export default{
   <div>
     <Header></Header>
 <!--    <SearchBar></SearchBar>-->
+    <NavMenu></NavMenu>
     <Layout :page="page" ></Layout>
   </div>
 

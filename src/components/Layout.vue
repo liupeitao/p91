@@ -21,7 +21,7 @@ export default {
       total: 450,
       currentPage : this.$props.page,
       keyword: '',
-      chunkSize: 3
+      chunkSize: 4
     }
   },
   props :{
@@ -47,7 +47,7 @@ export default {
   // },
   methods:{
     fetchData(page) {
-      axios.get(`http://10.16.23.72:5000/api/data?page=${page.toString()}&per_page=${this.page_size.toString()}`)
+      axios.get(`http://localhost:5000/api/data?page=${page.toString()}&per_page=${this.page_size.toString()}`)
           .then(response => {
             this.responseData = response.data['data'];
             this.total = response.data['total']
@@ -97,12 +97,12 @@ export default {
 
 <template>
   <div>
-    <!--    <SearchFilter :infos="this.responseData" @input="up"></SearchFilter>-->
-    <el-input v-model="keyword" placeholder="输入标题或者作者进行过滤" style="width: 20em; margin-bottom: 60px; border-color: #1f4029"></el-input>
+<!--        <SearchFilter :infos="this.responseData" @input="up"></SearchFilter>-->
+    <el-input v-model="keyword" placeholder="输入标题或者作者进行过滤" style="width: 20em; margin: 60px; border-color: #1f4029"></el-input>
   </div>
   <div>
     <el-row v-for="row in this.filteredList" :key="rowIndex" >
-      <el-col v-for="thumbnail in row" :key="thumbnail.id"  :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
+      <el-col v-for="thumbnail in row" :key="thumbnail.id"  :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
         <div class="grid-content bg-purple">
           <Thumbnail :infos="thumbnail"></Thumbnail>
         </div>

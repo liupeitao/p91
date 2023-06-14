@@ -12,6 +12,11 @@ const routes = [
         component: MainFrame
     },
     {
+        path: '/',
+        redirect: '/index',
+        name: 'home',
+    },
+    {
         path: '/play',
         name: 'play',
         component: VideoPlayerComponents

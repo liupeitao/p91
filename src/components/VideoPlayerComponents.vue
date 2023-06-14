@@ -1,6 +1,6 @@
 <template>
   <div>
-    <video ref="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="1080" height="620" >
+    <video ref="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="1240" height="700" >
       <source :src="videoSrc" >
 <!--      type="application/x-mpegURL"-->
     </video>
@@ -36,5 +36,8 @@ export default {
 </script>
 
 <style>
+/* 在手机上，将视频宽度设置为100% */
+
+
 /* 在这里添加 video.js 的样式 */
 </style>
